@@ -7,102 +7,143 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b1020;
-  color:white;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#0b1020;
+ color:white;
 }
-.header{
-  padding:22px 18px;
-  text-align:center;
-  background:linear-gradient(135deg,#171f3d,#0b1020);
+
+header{
+ padding:22px 18px;
+ text-align:center;
+ background:linear-gradient(135deg,#171f3d,#0b1020);
 }
+
 .logo{
-  font-size:30px;
-  font-weight:bold;
+ font-size:42px;
+ font-weight:bold;
 }
+
 .logo span{color:#6c63ff}
+
 .subtitle{
-  color:#b9bfd3;
-  margin-top:8px;
+ color:#b9bfd3;
+ font-size:20px;
+ margin-top:8px;
 }
+
 .container{
-  max-width:700px;
-  margin:auto;
-  padding:18px;
+ max-width:700px;
+ margin:auto;
+ padding:18px;
 }
+
 .card{
-  background:#151c33;
-  border:1px solid #293252;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:18px;
+ background:#151c33;
+ border:1px solid #293252;
+ border-radius:18px;
+ padding:18px;
+ margin-bottom:18px;
 }
-h2{margin-top:0}
+
+h2{
+ margin-top:0;
+ font-size:28px;
+}
+
 input,textarea,select{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #394363;
-  background:#0e1428;
-  color:white;
-  margin:8px 0 12px;
-  font-size:15px;
+ width:100%;
+ padding:15px;
+ border-radius:12px;
+ border:1px solid #394363;
+ background:#0e1428;
+ color:white;
+ margin:8px 0 12px;
+ font-size:16px;
+ outline:none;
 }
-textarea{min-height:130px;resize:vertical}
-button{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  background:#6c63ff;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  margin-top:6px;
+
+textarea{
+ min-height:140px;
+ resize:vertical;
 }
-button.secondary{background:#252e4d}
+
 .row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
 }
-.feature{
-  padding:12px;
-  background:#0e1428;
-  border-radius:12px;
-  margin-top:8px;
+
+button{
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ background:#6c63ff;
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+ margin-top:6px;
+ cursor:pointer;
 }
-.status{
-  margin-top:12px;
-  padding:12px;
-  background:#10182d;
-  border-radius:10px;
-  color:#b9bfd3;
+
+button.secondary{
+ background:#252e4d;
 }
+
+.result{
+ padding:14px;
+ background:#0e1428;
+ border-radius:12px;
+ color:#b9bfd3;
+ margin-top:14px;
+ line-height:1.6;
+}
+
+.idea{
+ padding:12px;
+ background:#0e1428;
+ border-radius:10px;
+ margin:8px 0;
+ cursor:pointer;
+}
+
+.idea:hover{
+ background:#19213c;
+}
+
 .footer{
-  text-align:center;
-  color:#777f99;
-  padding:20px;
-  font-size:13px;
+ text-align:center;
+ color:#777f99;
+ padding:25px;
+ font-size:13px;
+}
+
+@media(max-width:500px){
+ .logo{font-size:38px}
+ .subtitle{font-size:17px}
+ .row{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="logo">Free<span>Shorts</span></div>
-  <div class="subtitle">Create Shorts • Edit • Captions • Ideas</div>
-</div>
+<header>
+ <div class="logo">Free<span>Shorts</span></div>
+ <div class="subtitle">Create Shorts • Edit • Captions • Ideas</div>
+</header>
 
 <div class="container">
+
+<!-- YOUTUBE SHORTS -->
 
 <div class="card">
 <h2>🎬 YouTube → Shorts</h2>
 
-<input id="youtubeLink"
+<input id="youtube"
 placeholder="Paste YouTube video link here">
 
 <div class="row">
@@ -119,13 +160,15 @@ placeholder="Paste YouTube video link here">
 </select>
 </div>
 
-<button onclick="createShorts()">✨ Find Best Moments</button>
+<button onclick="findMoments()">✨ Find Best Moments</button>
 
-<div id="shortStatus" class="status">
+<div id="momentResult" class="result">
 Ready — paste a video link to begin.
 </div>
 </div>
 
+
+<!-- SCRIPT VIDEO -->
 
 <div class="card">
 <h2>✍️ Script → Video</h2>
@@ -133,26 +176,138 @@ Ready — paste a video link to begin.
 <textarea id="script"
 placeholder="Paste your script here..."></textarea>
 
-<select id="style">
-<option>🎥 Cinematic</option>
-<option>😂 Funny</option>
-<option>🔥 Trending</option>
+<select id="videoStyle">
+<option>🔥 Viral Shorts</option>
+<option>🎬 Cinematic</option>
+<option>🎮 Gaming</option>
 <option>📚 Educational</option>
-<option>🎨 Cartoon</option>
+<option>😂 Funny</option>
 </select>
 
-<button onclick="generateVideo()">🚀 Generate Video</button>
+<button onclick="makeVideo()">🎥 Create Video</button>
 
-<div id="videoStatus" class="status">
-Your script will appear here when processing starts.
+<div id="videoResult" class="result">
+Your video preview will appear here.
 </div>
 </div>
 
+
+<!-- CAPTION GENERATOR -->
 
 <div class="card">
-<h2>🛠️ Easy Editor</h2>
+<h2>📝 Caption Generator</h2>
 
-<div class="feature">✂️ Trim & Split</div>
-<div class="feature">📝 Add Text</div>
-<div class="feature">😀 Add Emoji</div>
-<div class="feature">✨ Filters
+<textarea id="captionText"
+placeholder="Paste your video topic or script..."></textarea>
+
+<button onclick="generateCaption()">✨ Generate Caption</button>
+
+<div id="captionResult" class="result">
+Your caption will appear here.
+</div>
+</div>
+
+
+<!-- VIDEO IDEAS -->
+
+<div class="card">
+<h2>💡 Shorts Ideas</h2>
+
+<button class="secondary" onclick="ideas()">🔥 Generate Ideas</button>
+
+<div id="ideasResult" class="result">
+Tap the button to get Shorts ideas.
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+FreeShorts • Create better Shorts
+</div>
+
+
+<script>
+
+function findMoments(){
+
+ let link=document.getElementById("youtube").value.trim();
+ let count=document.getElementById("shortCount").value;
+ let format=document.getElementById("format").value;
+
+ if(!link){
+  document.getElementById("momentResult").innerHTML=
+  "⚠️ Please paste a YouTube video link first.";
+  return;
+ }
+
+ document.getElementById("momentResult").innerHTML=
+ "✨ Video received!<br><br>"+
+ "Selected: <b>"+count+"</b><br>"+
+ "Format: <b>"+format+"</b><br><br>"+
+ "🎯 Best moments analysis ready.<br>"+
+ "<small>Automatic video downloading/editing requires a video-processing service or API.</small>";
+}
+
+
+function makeVideo(){
+
+ let script=document.getElementById("script").value.trim();
+ let style=document.getElementById("videoStyle").value;
+
+ if(!script){
+  document.getElementById("videoResult").innerHTML=
+  "⚠️ Please enter your script first.";
+  return;
+ }
+
+ document.getElementById("videoResult").innerHTML=
+ "🎬 Video project created!<br><br>"+
+ "Style: <b>"+style+"</b><br>"+
+ "Format: <b>9:16 Vertical</b><br><br>"+
+ "📝 Your script is ready for video creation.";
+}
+
+
+function generateCaption(){
+
+ let text=document.getElementById("captionText").value.trim();
+
+ if(!text){
+  document.getElementById("captionResult").innerHTML=
+  "⚠️ Please enter your topic or script.";
+  return;
+ }
+
+ document.getElementById("captionResult").innerHTML=
+ "🔥 "+text+"<br><br>"+
+ "#Shorts #YouTubeShorts #Viral #Trending";
+}
+
+
+function ideas(){
+
+ let ideas=[
+ "🔥 3 things nobody tells you about success",
+ "💰 How to save money every month",
+ "🤯 One fact that will surprise you",
+ "❤️ A short emotional life story",
+ "🚀 5 habits that can change your life",
+ "😂 Funny daily-life moment",
+ "🎯 One powerful motivational message",
+ "📱 Useful mobile trick you didn't know"
+ ];
+
+ let html="";
+
+ ideas.forEach(function(item){
+  html+="<div class='idea'>"+item+"</div>";
+ });
+
+ document.getElementById("ideasResult").innerHTML=html;
+}
+
+</script>
+
+</body>
+</html>
