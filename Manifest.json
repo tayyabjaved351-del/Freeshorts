@@ -1,0 +1,11 @@
+{
+  "name": "FreeShorts",
+  "short_name": "FreeShorts",
+  "description": "Free AI video and Shorts creation platform",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080c16",
+  "theme_color": "#6c63ff",
+  "orientation": "portrait"
+}
