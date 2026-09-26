@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeShorts</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b1020;
+  color:white;
+}
+.header{
+  padding:22px 18px;
+  text-align:center;
+  background:linear-gradient(135deg,#171f3d,#0b1020);
+}
+.logo{
+  font-size:30px;
+  font-weight:bold;
+}
+.logo span{color:#6c63ff}
+.subtitle{
+  color:#b9bfd3;
+  margin-top:8px;
+}
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
+}
+.card{
+  background:#151c33;
+  border:1px solid #293252;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:18px;
+}
+h2{margin-top:0}
+input,textarea,select{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #394363;
+  background:#0e1428;
+  color:white;
+  margin:8px 0 12px;
+  font-size:15px;
+}
+textarea{min-height:130px;resize:vertical}
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:#6c63ff;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  margin-top:6px;
+}
+button.secondary{background:#252e4d}
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.feature{
+  padding:12px;
+  background:#0e1428;
+  border-radius:12px;
+  margin-top:8px;
+}
+.status{
+  margin-top:12px;
+  padding:12px;
+  background:#10182d;
+  border-radius:10px;
+  color:#b9bfd3;
+}
+.footer{
+  text-align:center;
+  color:#777f99;
+  padding:20px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">Free<span>Shorts</span></div>
+  <div class="subtitle">Create Shorts • Edit • Captions • Ideas</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>🎬 YouTube → Shorts</h2>
+
+<input id="youtubeLink"
+placeholder="Paste YouTube video link here">
+
+<div class="row">
+<select id="shortCount">
+<option>3 Shorts</option>
+<option>5 Shorts</option>
+<option>10 Shorts</option>
+</select>
+
+<select id="format">
+<option>9:16 Vertical</option>
+<option>1:1 Square</option>
+<option>16:9 Landscape</option>
+</select>
+</div>
+
+<button onclick="createShorts()">✨ Find Best Moments</button>
+
+<div id="shortStatus" class="status">
+Ready — paste a video link to begin.
+</div>
+</div>
+
+
+<div class="card">
+<h2>✍️ Script → Video</h2>
+
+<textarea id="script"
+placeholder="Paste your script here..."></textarea>
+
+<select id="style">
+<option>🎥 Cinematic</option>
+<option>😂 Funny</option>
+<option>🔥 Trending</option>
+<option>📚 Educational</option>
+<option>🎨 Cartoon</option>
+</select>
+
+<button onclick="generateVideo()">🚀 Generate Video</button>
+
+<div id="videoStatus" class="status">
+Your script will appear here when processing starts.
+</div>
+</div>
+
+
+<div class="card">
+<h2>🛠️ Easy Editor</h2>
+
+<div class="feature">✂️ Trim & Split</div>
+<div class="feature">📝 Add Text</div>
+<div class="feature">😀 Add Emoji</div>
+<div class="feature">✨ Filters
